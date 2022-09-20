@@ -7,22 +7,18 @@ namespace Reference3
 {
     public class Avatar : MonoBehaviour, IKillable, IDamageable<float>, IPointerClickHandler
     {
-        [SerializeField] private bool IfKillTrue;
-        [SerializeField] private float damageTaken;
         [SerializeField] private float hp;
-        [SerializeField] private Color targetColor;
 
         private static int avatarCount;
-        private SpriteRenderer target;
         public static int AvatarCount { get => avatarCount; }
+
+        private float damageTaken = 10;
+
 
         public void Start()
         {
             avatarCount++;
             Debug.Log("Create avatar #" + avatarCount);
-
-            target = GetComponent<SpriteRenderer>();
-            normalize = (hp / damageTaken) / 100;
         }
 
         public void Kill()
@@ -31,27 +27,17 @@ namespace Reference3
             avatarCount--;
         }
 
-        private float normalize;
         public void Damage(float damageTaken)
         {
             hp -= damageTaken;
 
-            target.color = Color.Lerp(target.color, targetColor, normalize);
-            normalize += normalize;
-
             if (hp <= 0)
-            {
-                Destroy(gameObject);
-                avatarCount--;
-            }
+                Kill();
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (IfKillTrue)
-                Kill();
-            else
-                Damage(damageTaken);
+            Damage(damageTaken);
         }
     }
 }

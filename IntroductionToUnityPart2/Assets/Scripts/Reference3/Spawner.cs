@@ -7,6 +7,7 @@ namespace Reference3 {
     {
         [SerializeField] private int minAvatarCount;
         [SerializeField] private GameObject SpawnObject;
+        [SerializeField] private GameObject Shield;
 
         void Start()
         {
@@ -18,7 +19,7 @@ namespace Reference3 {
 
         void Update()
         {
-            if (Avatar.AvatarCount != minAvatarCount)
+            if (Avatar.AvatarCount < minAvatarCount)
             {
                 RandomSpawn();
             }
@@ -26,8 +27,14 @@ namespace Reference3 {
 
         private void RandomSpawn()
         {
-            Vector2 pos = new Vector2(transform.position.x + Random.Range(-13, 13), transform.position.y + Random.Range(-5, 5));
-            Instantiate(SpawnObject, pos, Quaternion.identity);
+            Vector2 pos = new Vector2(transform.position.x + Random.Range(-12, 12), transform.position.y + Random.Range(-4, 4));
+            GameObject enemy = Instantiate(SpawnObject, pos, Quaternion.identity);
+
+            if (Random.Range(0f, 1f) <= 0.2)
+            {
+                GameObject sheild = Instantiate(Shield, pos, Quaternion.identity);
+                sheild.transform.parent = enemy.transform;
+            }
         }
     }
 }

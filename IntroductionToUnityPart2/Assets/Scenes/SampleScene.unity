@@ -373,6 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minAvatarCount: 3
   SpawnObject: {fileID: 1404269437754630831, guid: 1d128ea829374884d89ec9ce8a0e6037, type: 3}
+  Shield: {fileID: 8414428266082972834, guid: 1132496f437281845a8f68b28f1ed9cf, type: 3}
 --- !u!212 &730892419
 SpriteRenderer:
   m_ObjectHideFlags: 0
