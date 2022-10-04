@@ -11,9 +11,9 @@ namespace Reference3
 
         private static int avatarCount;
         public static int AvatarCount { get => avatarCount; }
-
+        
         private float damageTaken = 10;
-
+        private Counter counter;
 
         public void Start()
         {
@@ -23,6 +23,7 @@ namespace Reference3
 
         public void Kill()
         {
+            counter.AddScore(gameObject);
             Destroy(gameObject);
             avatarCount--;
         }

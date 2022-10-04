@@ -9,6 +9,7 @@ namespace Reference3 {
         [SerializeField] private GameObject SpawnObject;
         [SerializeField] private GameObject Shield;
 
+
         void Start()
         {
             for (int i = 0; i < minAvatarCount; i++)
